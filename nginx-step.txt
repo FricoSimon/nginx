@@ -44,3 +44,23 @@ location / {
           proxy_cache_bypass $http_upgrade;
  
  }
+
+// get a free domain 
+curl -X POST -H "Content-type: application/json" -d "{ \"ip\": \"<EXTERNAL IP>\" }" "https://sub.dcdg.xyz/dns/records"
+
+copy the domain name like this
+www.odd-olives-laugh-bravely.a276.dcdg.xyz
+odd-olives-laugh-bravely.a276.dcdg.xyz
+
+change the /etc/nginx/sites-available/yourdomain.com server name with the domain name not ip address anymore
+
+// now you can access the domain or ip address directly
+
+ // install certbot for tsl
+ sudo apt install certbot python3-certbot-nginx
+ sudo certbot --nginx 
+
+ // NOTES
+ dont forget to restart nginx
+ allow firewall 80 443
+ run the app server
