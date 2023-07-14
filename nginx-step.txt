@@ -1,0 +1,46 @@
+// install nginx
+sudo apt install nginx -y
+
+// nginx service
+sudo service nginx start / stop / restart
+
+// nginx check
+sudo nginx -t
+
+// nginx location 
+/etc/nginx
+
+// nginx html 
+/var/www/html
+
+// nginx step 1; remove the default file first
+sudo rm /etc/nginx/sites-enabled/default
+sudo rm /etc/nginx/sites-available/default
+
+// nginx step 2; create a new file
+sudo nano /etc/nginx/sites-available/yourdomain.com
+
+// nginx step 3; create a symbolic link
+sudo ln -s /etc/nginx/sites-available/yourdomain.com /etc/nginx/sites-enabled/yourdomain.com
+
+// run the app 
+~/YOUR_APPLICATION_FOLDER   
+
+// install ufw (firewall)
+sudo apt install ufw -y
+sudo ufw enabled
+
+// nginx myserver config
+listen PORT default_server;
+
+server_name yourdomain.com / ip_address;
+
+location / {
+          proxy_pass http://localhost:PORT;
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection 'upgrade';
+          proxy_set_header Host $host;
+          proxy_cache_bypass $http_upgrade;
+ 
+ }
